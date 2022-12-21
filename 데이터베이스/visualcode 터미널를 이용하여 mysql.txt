@@ -1,0 +1,5 @@
+cmd
+chcp 65001
+cd C:\
+cd .\Bitnami\wampstack-8.1.11-0(확인 요망 -> 버전마다 다름)
+mariadb\bin\mysql -u '유저' -p'비밀번호' '테이블' < '파일명.sql'

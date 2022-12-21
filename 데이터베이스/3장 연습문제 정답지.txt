@@ -1,0 +1,27 @@
+use madang;
+-- select distinct customer.name from customer inner join orders on customer.custid = orders.custid inner join book on orders.bookid = book.bookid 
+-- where publisher in (select publisher from customer inner join orders on customer.custid = orders.custid inner join book on orders.bookid = book.bookid where customer.name = '박지성') and customer.name != '박지성';
+--select publisher from customer inner join orders on customer.custid = orders.custid inner join book on orders.bookid = book.bookid where customer.name = '박지성';
+
+-- select distinct publisher from book;
+-- select count(distinct publisher) from book;
+
+--select name from customer c1 
+where (select count(distinct publisher) 
+from customer c2 inner join orders on c2.custid = orders.custid 
+inner join book on orders.bookid = book.bookid where c1.name = c2.name) >= 2;
+
+--select b1.bookname from book b1 
+where (select count(b2.bookid) from book b2 inner join orders on b2.bookid = orders.bookid
+where b1.bookid = b2.bookid) >= 0.3*(select count(*) from customer); 
+
+--select book.bookname from book inner join orders on book.bookid = orders.bookid where book.price - orders.saleprice = (select max(book.price - orders.saleprice) from book inner join orders on book.bookid = orders.bookid); 
+--select max(book.price - orders.saleprice) from book inner join orders on book.bookid = orders.bookid;
+
+--select avg(orders.saleprice) from customer inner join orders on customer.custid = orders.custid group by customer.custid; 
+--select avg(saleprice) from orders;
+--select name from customer where custid in (select avg(orders.saleprice) from customer inner join orders on customer.custid = orders.custid group by custid > (select avg(saleprice) from orders));
+
+select customer.name 
+from customer inner join orders on customer.custid = orders.custid 
+group by customer.name having avg(orders.saleprice) > (select avg(saleprice) from orders); 

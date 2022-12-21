@@ -1,0 +1,28 @@
+use madang;
+-- select * from book;
+
+--select count(distinct custid) AS '중복 없이 출력' from orders;
+
+-- select * from orders order by custid;
+
+--select custid, count(bookid) as '도서수량', sum(saleprice) as '총판매액' from orders group by custid;
+
+--select custid, count(bookid) as '주문도서 총수량' from orders where saleprice >= 8000 group by custid having count(bookid) > 1;
+
+--select bookname from book where bookid like 1;
+
+-- select bookname from book where price >= 20000;
+
+-- select * from orders where custid =1;
+-- select sum(saleprice) as '총구매액' from orders where custid = 1; 
+
+--select count(bookid) as ' 도서의 수' from orders where custid = 1;
+--select customer.name, count(orders.bookid) as ' 도서의 수' from orders, customer where orders.custid = customer.custid and customer.name = '박지성';
+
+--select count(bookid) from book;
+--select count(distinct publisher) from book;
+--select name, address from customer;
+--select orderid from orders where orderdate between '2014-07-04' and '2014-07-07';
+--select orderid from orders where orderdate not between '2014-07-04' and '2014-07-07'; --이거 실행가능
+select name, address from customer where name like '김%';
+select name, address from customer where name like '김%아';
